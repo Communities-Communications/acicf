@@ -26,8 +26,11 @@ class PartnerAcicf(models.Model):
 	
 	def _calculo_idade(self):
 		days_in_year = 365.2425
-		data = self.data_nasc.date('%Y, %m, %d')
+		
+		data = datetime.date(self.data_nasc)
+		data.strftime('%Y, %m, %d')
 		age = int((date.today() - data).days / days_in_year)
+		
 		return age
 	
 # Esta função não está a funcionar rever mais tarde	
