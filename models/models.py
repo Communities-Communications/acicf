@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 		
 class PartnerAcicf(models.Model):
 	_inherit = 'res.partner'
@@ -24,11 +25,21 @@ class PartnerAcicf(models.Model):
 	colab = fields.Integer('Número de Trabalhadores')	
 	tipo_empresa = fields.Char('Dimensão da Empresa :: Rever Funcionalidade', compute='_type_define')
 	
+#	def _calculo_idade(self):
+#		days_in_year = 365.2425
+#		age = int((date.today() - self.data_nasc).days / days_in_year)
+#		return age
+
+	@api.multi
+	@api.depends('data_nasc')
 	def _calculo_idade(self):
-		days_in_year = 365.2425
-		data = self.data_nasc.date('%Y, %m, %d')
-		age = int((date.today() - data).days / days_in_year)
-		return age
+		for record in self:
+			if record.data_nasc:
+				record.idade = relativedelta(
+					fields.Date.from_string(fields.Date.today()),
+					fields.Date.from_string(record.data_nasc)).years
+			else:
+					record.idade = 0
 	
 # Esta função não está a funcionar rever mais tarde	
 	@api.depends('colab')
