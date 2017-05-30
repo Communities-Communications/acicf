@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+
+        <record id="view_partner_form_inherit_partner_acicf" model="ir.ui.view">
+            <field name="name">Partners ACICF</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<!--<xpath expr="//field[@name=function']" position="after">
+            	<field name="hab"/>
+					</xpath>-->
+                      <notebook position="inside">
+                          <page string="Dados Adicionais">
+                     <div>
+                        <separator string="Short Bio"/>
+                              <group>
+                                <field name="cae1"/>
+                                <field name="dcae1"/>
+                                <field name="cae2"/>
+                                <field name="socio"/>
+                              </group>
+                        <separator string="Forma Jurídica"/>
+                              <group>
+                                <field name="formajuridica"/>
+                                <field name="capsocial"/>
+                                <field name="dataconst"/>
+                                
+                              </group>
+                              
+                        <separator string="Dimensão da Empresa"/>
+                              <group>
+                                <field name="tipo_empresa"/>
+                                <field name="colab"/>
+                              </group>
+                     </div>
+                          </page>
+                      </notebook>
+                  </field>
+        </record>
+
+  </data>
+</odoo>
