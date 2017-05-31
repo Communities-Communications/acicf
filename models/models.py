@@ -24,7 +24,7 @@ class PartnerAcicf(models.Model):
 
 	colab = fields.Integer('Número de Trabalhadores')	
 	tipo_empresa = fields.Char('Dimensão da Empresa :: Rever Funcionalidade', compute='_type_define')
-	ies_id = fields.Many2one('res.partner.ies', 'IES')
+	ies_id = fields.One2many('res.partner.ies', 'year', 'IES')
 	
 #	def _calculo_idade(self):
 #		days_in_year = 365.2425
@@ -64,7 +64,7 @@ class InfoIESAcicf(models.Model):
 	_name = 'res.partner.ies'
 	
 	
-	year = fields.Char('Anos de Actividade')
+	year = fields.Char('Ano de Actividade')
 	total_assets = fields.Float('Total de Ativos')
 	shareholders_funds = fields.Float('Fundos de Acionistas')
 	number_of_employees = fields.Float('Número de Empregados')

@@ -27,22 +27,7 @@
                             </group>
                           </page>
                           <page string="IES">
-                            <field name="ies_id" mode="form">
-                                <form string="IES">
-                                    <sheet>
-                                        <group>
-                                            <group>
-                                            <field name="year"/>
-                                            ...
-                                            </group>
-                                            <group>
-                                            <field name="total_assets"/>
-                                            ...
-                                            </group>
-                                        </group>
-                                    </sheet>
-                                </form>
-                            </field>
+                            <field name="ies_id"/>
                           </page>
                       </notebook>
                   </field>
@@ -66,6 +51,51 @@
                 </xpath>
             </field>
         </record>
+
+<!-- IES -->
+        <!-- Processo de Recolha ou Entrega -->
+        <record id="res_partner_ies_tree" model="ir.ui.view">
+            <field name="name">res.partner.ies.tree</field>
+            <field name="model">res.partner.ies</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="IES" default_order="year desc">
+                    <field name="year"/>
+                    <field name="number_of_employees"/>
+                    <field name="turnover"/>
+                    <field name="financial_profit"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="res_partner_ies_form" model="ir.ui.view">
+            <field name="name">res.partner.ies.form</field>
+            <field name="model">res.partner.ies</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="IES">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="year" default_focus="1" placeholder="Ano de Actividade"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="total_assets"/>
+                            <field name="shareholders_funds"/>
+                        </group>
+                        <group>
+                            <field name="number_of_employees"/>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>        
+        
+<!-- IES -->
 
   </data>
 </odoo>
