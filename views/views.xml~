@@ -6,33 +6,28 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-            	<!--<xpath expr="//field[@name=function']" position="after">
-            	<field name="hab"/>
-					</xpath>-->
                       <notebook position="inside">
                           <page string="Dados Adicionais">
-                     <div>
-                        <separator string="Short Bio"/>
-                              <group>
-                                <field name="cae1"/>
-                                <field name="dcae1"/>
-                                <field name="cae2"/>
-                                <field name="socio"/>
-                              </group>
-                        <separator string="Forma Jurídica"/>
-                              <group>
-                                <field name="formajuridica"/>
-                                <field name="capsocial"/>
-                                <field name="dataconst"/>
-                                
-                              </group>
-                              
-                        <separator string="Dimensão da Empresa"/>
-                              <group>
-                                <field name="tipo_empresa"/>
-                                <field name="colab"/>
-                              </group>
-                     </div>
+                            <group name="container_row_2">
+                                <group string="Actividades" name="actividades">
+                                    <field name="cae1"/>
+                                    <field name="dcae1"/>
+                                		<field name="cae2"/>
+                                		<field name="socio"/>
+                                </group>
+                                <group string="Forma Jurídica" name="forma_juridica">
+                                    <field name="formajuridica"/>
+                                    <field name="capsocial"/>
+                                    <field name="dataconst"/>
+                                </group>
+                                <group string="Dimensão da Empresa" name="dimensao_da_empresa">
+                                     <field name="tipo_empresa"/>
+                                     <field name="colab"/>
+                                </group>
+                            </group>
+                          </page>
+                          <page string="IES">
+                            <field name="ies_id"/>
                           </page>
                       </notebook>
                   </field>
@@ -52,6 +47,7 @@
                     <field name="hab"/>
                     <field name="capital"/>
                     <field name="data_nasc"/>
+                    <field name="idade" readonly="1"/>
                 </xpath>
             </field>
         </record>
