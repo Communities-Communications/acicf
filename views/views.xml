@@ -21,13 +21,13 @@
                                     <field name="dataconst"/>
                                 </group>
                                 <group string="Dimensão da Empresa" name="dimensao_da_empresa">
-                                     <field name="tipo_empresa"/>
+                                     <field name="tipo_empresa" readonly="1"/>
                                      <field name="colab"/>
                                 </group>
                             </group>
                           </page>
                           <page string="IES">
-                            <field name="ies_id"/>
+                            <field name="ies_ids"/>
                           </page>
                       </notebook>
                   </field>
@@ -79,15 +79,34 @@
                         <h1>
                             <field name="year" default_focus="1" placeholder="Ano de Actividade"/>
                         </h1>
+                            <field name="partner_id" readonly="1"/>
                     </div>
 
                     <group>
                         <group>
                             <field name="total_assets"/>
                             <field name="shareholders_funds"/>
+                            <field name="turnover"/>
+                            <field name="sales"/>
+									 <field name="costs_of_goods_sold"/>
+									 <field name="gross_profit"/>
+                            <field name="other_operating_expenses"/>
+                            <field name="financial_profit"/>
+                            <field name="financial_revenue"/>
+                            <field name="cash_flow"/>
                         </group>
                         <group>
                             <field name="number_of_employees"/>
+                            <field name="financial_expenses"/>
+                            <field name="profit_before_tax"/>
+                            <field name="taxation"/>
+                            <field name="profit_after_tax"/>
+                            <field name="profit_for_period"/>
+                            <field name="material_costs"/>
+                            <field name="costs_of_employees"/>
+                            <field name="depreciation"/>
+                            <field name="added_value"/>
+                            
                         </group>
                     </group>
                 </sheet>

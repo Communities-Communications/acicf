@@ -23,8 +23,8 @@ class PartnerAcicf(models.Model):
 	dataconst = fields.Date('Data de Constituição')
 
 	colab = fields.Integer('Número de Trabalhadores')	
-	tipo_empresa = fields.Char('Dimensão da Empresa :: Rever Funcionalidade', compute='_type_define')
-	ies_id = fields.One2many('res.partner.ies', 'year', 'IES')
+	tipo_empresa = fields.Char('Dimensão da Empresa')
+	ies_ids = fields.One2many('res.partner.ies', 'partner_id', 'IES')
 	
 #	def _calculo_idade(self):
 #		days_in_year = 365.2425
@@ -43,19 +43,19 @@ class PartnerAcicf(models.Model):
 					record.idade = 0
 	
 # Esta função não está a funcionar rever mais tarde	
-	@api.depends('colab')
+	@api.onchange('colab')
 	def _type_define(self):
-#		if self.colab > 0 and self.colab <= 9:
-#			self.tipo_empresa = 'micro'
+		if self.colab > 0 and self.colab <= 9:
+			self.tipo_empresa = 'micro'
 			
-#		if self.colab > 9 and self.colab < 50:
-#			self.tipo_empresa = 'pequena'
+		if self.colab > 9 and self.colab < 50:
+			self.tipo_empresa = 'pequena'
 				
-#		if self.colab > 50 and self.colab < 100:
-#			self.tipo_empresa = 'media'
+		if self.colab > 50 and self.colab < 100:
+			self.tipo_empresa = 'media'
 		
-#		if self.colab >= 101:
-#			self.tipo_empresa = 'grande'
+		if self.colab >= 101:
+			self.tipo_empresa = 'grande'
 		return ()
 
 
@@ -65,9 +65,10 @@ class InfoIESAcicf(models.Model):
 	
 	
 	year = fields.Char('Ano de Actividade')
+	partner_id = fields.Many2one('res.partner')
 	total_assets = fields.Float('Total de Ativos')
 	shareholders_funds = fields.Float('Fundos de Acionistas')
-	number_of_employees = fields.Float('Número de Empregados')
+	number_of_employees = fields.Integer('Número de Empregados')
 	turnover = fields.Float('Volume de Negócios')
 	sales = fields.Float('Vendas')
 	costs_of_goods_sold = fields.Float('Custos de Bens Vendidos')
