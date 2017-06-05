@@ -22,14 +22,10 @@ class PartnerAcicf(models.Model):
 	capsocial = fields.Float('Capital Social')
 	dataconst = fields.Date('Data de Constituição')
 
-	colab = fields.Integer('Número de Trabalhadores')	
-	tipo_empresa = fields.Char('Dimensão da Empresa')
+	colab = fields.Integer('Número de Trabalhadores')
+	tipo_empresa = fields.Selection([('micro','Micro'),('pequena','Pequena'),('media','Média'),('grande','Grande')])
 	ies_ids = fields.One2many('res.partner.ies', 'partner_id', 'IES')
 	
-#	def _calculo_idade(self):
-#		days_in_year = 365.2425
-#		age = int((date.today() - self.data_nasc).days / days_in_year)
-#		return age
 
 	@api.multi
 	@api.depends('data_nasc')
@@ -42,7 +38,7 @@ class PartnerAcicf(models.Model):
 			else:
 					record.idade = 0
 	
-# Esta função não está a funcionar rever mais tarde	
+	
 	@api.onchange('colab')
 	def _type_define(self):
 		if self.colab > 0 and self.colab <= 9:
@@ -56,8 +52,6 @@ class PartnerAcicf(models.Model):
 		
 		if self.colab >= 101:
 			self.tipo_empresa = 'grande'
-		return ()
-
 
 
 class InfoIESAcicf(models.Model):

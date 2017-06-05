@@ -21,8 +21,8 @@
                                     <field name="dataconst"/>
                                 </group>
                                 <group string="Dimensão da Empresa" name="dimensao_da_empresa">
-                                     <field name="tipo_empresa" readonly="1"/>
                                      <field name="colab"/>
+                                     <field name="tipo_empresa"/>
                                 </group>
                             </group>
                           </page>
